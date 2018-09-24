@@ -1,0 +1,27 @@
+{
+  "name": "moshtari",
+  "version": "1.0.0",
+  "description": "app moshtari",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Livecoder",
+  "license": "MIT",
+  "dependencies": {
+    "auto-bind": "^1.2.1",
+    "body-parser": "^1.18.3",
+    "connect-flash-plus": "^0.2.1",
+    "connect-mongo": "^2.0.1",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^6.0.0",
+    "ejs": "latest",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.3.0",
+    "moment-jalali": "^0.3.9",
+    "mongo-store": "0.0.2",
+    "mongoose": "^5.2.15"
+  }
+}

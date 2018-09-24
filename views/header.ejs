@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./../css/bootstrap.min.css" />
+    <title>app moshtrai</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light ml-2">
+    <a class="navbar-brand" href="/">برنامه مشتریان</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <form class="form-inline my-2 my-lg-0" id="search-form" method="get" action="/search">
+        <button class="btn btn-outline-primary my-2 my-sm-0" id="btn-search" style="margin-left:10px;" type="submit">جستجو</button>
+        <input dir="rtl" name="search" class="form-control mr-sm-2" id="search" type="search" value="" placeholder="جستجوی مشتری..." aria-label="Search">
+    </form><br/>
+    <small  dir="rtl" class="small text-danger"></small>
+    <br />
+
+
+    <div class="collapse navbar-collapse mr-2" id="navbarToggleExternalContent">
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link" href="/addcustomer" id="addcustomer">ثبت مشتری </a>
+            <li class="nav-item">
+                <a class="nav-link active" href="/" id="moshtari"> مشتریان</a>
+            </li>
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <script src="https://cdn.rtlcss.com/bootstrap/v4.0.0/js/bootstrap.min.js" integrity="sha384-54+cucJ4QbVb99v8dcttx/0JRx4FHMmhOWi4W+xrXpKcsKQodCBwAvu3xxkZAwsH" crossorigin="anonymous"></script>
+            <script>
+                let alink=[];
+                alink[0]=document.getElementById('moshtari');
+                alink[1]=document.getElementById('addcustomer');
+                //clicked 0
+                alink[0].onclick=()=>{
+                    alink[1].classList.remove('active');
+                    alink[0].classList.add('active');
+                }
+                //clicked 1
+                alink[1].onclick=()=>{
+                    alink[0].classList.remove('active');
+                    alink[1].classList.add('active');
+                }
+                    $(document).ready(function(){
+                        $("#btn-search").click(function (event) {
+						var search=$('#search');
+							var is_search=$.trim(search.val().replace(/\s+/g,' '));
+                            if(!is_search){
+                                event.preventDefault();
+                                $('.small').append(" خطا لطفاٌ ورودی خود را بررسی کنید.!");
+                                setTimeout(function(){$('.small').empty()},4000)
+                            }
+                        })
+                    })
+            </script>
+        </ul>
+    </div>
+</nav>

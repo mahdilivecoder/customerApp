@@ -1,0 +1,82 @@
+<%-include('./header')%>
+<h2 class="text-center text-info"><%=title%></h2>
+<form action="addcustomer" method="post" dir="rtl" class="align-items-center">
+    <div class="form-group">
+        <div class="col-md-7">
+            <label for="name">نام:</label>
+            <input type="text" id="name" name="name" class="form-control mx-sm-3" placeholder="نام"/>
+            <small class="name_error text-danger text-justify"></small>
+        </div>
+        <div class="col-md-7">
+            <label for="lastname">نام خانوادگی:</label>
+            <input type="text" id="lastname" name="lastname" class="form-control mx-sm-3" placeholder="نام خانوادگی"/>
+            <small class="lastname_error text-danger text-justify"></small>
+        </div>
+        <div class="col-md-7">
+            <label for="lastname">شماره تلفن:</label>
+            <input type="text" id="phonenumber" name="phonenumber" class="form-control mx-sm-3" placeholder="شماره تلفن">
+            <small class="phone_error text-danger text-justify"></small>
+        </div>
+        <div class="col-md-7">
+            <label for="className">کلاس مورد نظر:</label>
+      <select class="dropdown-item form-control mx-sm-3 bg-light" id="className" dir="rtl" name="className">
+          <optgroup label="کلاس مورد نظر را انتخاب کنید.!">
+            <option>صادرات و واردات</option>
+            <option>ارز دیجیتال</option>
+            <option>بورس</option>
+          </optgroup>
+      </select>
+        </div>
+        <div class="col-md-7">
+            <label for="companyName">نام شرکت:</label>
+            <input type="text" id="companyname" name="companyname" class="form-control mx-sm-3" placeholder="نام شرکت">
+            <small class="compnay_error text-danger text-justify"></small>
+        </div>
+        <div class="col-md-7">
+        <span class="text-info pt-2">وضعیت پرداخت:</span><br/>
+      <div class="form-check mr-2">
+        <label class="form-check-label" for="squ-yes">
+            <input type="radio" class="form-check-input" id="squ-yes" name="balanced" value="true" checked>تسویه شده
+        </label>
+    </div>
+    <div class="form-check">
+        <label class="form-check-label" for="squ-no">
+            <input type="radio" class="form-check-input" id="squ-no" name="balanced" value="false">در حال پرداخت(تسویه نشده)
+        </label>
+    </div>
+    </div><br/>
+
+        <div class="col-md-7 mb-3">
+            <span class="text-primary pt-2">وضعیت دوره کارآموزی:</span><br/>
+            <div class="form-check mr-2">
+                <label class="form-check-label" for="training-yes">
+                    <input type="radio" class="form-check-input" id="training-yes" name="training" value="true">شرکت می کند
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label" for="training-no">
+                    <input type="radio" class="form-check-input" id="training-no" name="training" value="false" checked>شرکت نمی کند
+                </label>
+            </div>
+        </div>
+
+    <div class="col-md-7">
+        <input type="submit" class="btn btn-success badge-success" value="ثبت مشتری"/>
+    </div><br/>
+
+        <div class="col-md-7">
+            <%console.log(errors)%>
+            <% if(errors.length > 0){ %>
+            <%errors.forEach(error=>{%>
+            <div class="bg-danger alert-dismissible alert-danger">
+                <span class="text-dark"><%=error%></span>
+            </div>
+            <%})%>
+            <%}%>
+            <div class="bg-success alert-success alert-dismissible">
+                <%=success%>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="./../js/validate.js" type="text/javascript"></script>

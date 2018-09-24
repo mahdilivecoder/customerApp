@@ -1,0 +1,114 @@
+<%-include('./header')%>
+<h2 class="text-center text-info"><%=title%></h2>
+<form action="edit/<%=result._id%>" method="post" dir="rtl" class="align-items-center">
+    <div class="form-group">
+        <div class="col-md-7">
+            <label for="name">نام:</label>
+            <input type="text" id="name" name="name" class="form-control mx-sm-3" placeholder="نام" value="<%=result.name%>"/>
+            <small class="name_error text-danger text-justify"></small>
+        </div>
+        <div class="col-md-7">
+            <label for="lastname">نام خانوادگی:</label>
+            <input type="text" id="lastname" name="lastname" class="form-control mx-sm-3" placeholder="نام خانوادگی" value="<%=result.lastName%>"/>
+            <small class="lastname_error text-danger text-justify"></small>
+        </div>
+        <div class="col-md-7">
+            <label for="lastname">شماره تلفن:</label>
+            <input type="text" id="phonenumber" name="phonenumber" class="form-control mx-sm-3" placeholder="شماره تلفن"  value="<%=result.phoneNumber%>">
+            <small class="phone_error text-danger text-justify"></small>
+        </div>
+        <div class="col-md-7">
+            <label for="className">کلاس مورد نظر:</label>
+      <select class="dropdown-item form-control mx-sm-3 bg-light" id="className" dir="rtl" name="className">
+          <optgroup label="کلاس مورد نظر را انتخاب کنید.!">
+            <option>صادرات و واردات</option>
+            <option>ارز دیجیتال</option>
+            <option>بورس</option>
+          </optgroup>
+      </select>
+            <script type="text/javascript">
+                //add 0 to first of phone number input value
+                var phonenumber=document.getElementById('phonenumber').value;
+                var zero='0';
+                var has_phonenumber=zero.concat('',phonenumber);
+                document.getElementById('phonenumber').setAttribute('value',has_phonenumber);
+
+                //select options as server side
+                var options=document.getElementsByTagName("OPTION");
+                <%if(result.className=='صادرات و واردات'){%>
+                options[0].setAttribute('selected','selected');
+                <%}%>
+                <%if(result.className=='ارز دیجیتال'){%>
+                options[1].setAttribute('selected','selected');
+                <%}%>
+                <%if(result.className=='بورس'){%>
+                options[2].setAttribute('selected','selected');
+                <%}%>
+            </script>
+        </div>
+        <div class="col-md-7">
+            <label for="companyName">نام شرکت:</label>
+            <input type="text" id="companyname" name="companyname" class="form-control mx-sm-3" placeholder="نام شرکت" value="<%=result.companyName%>">
+            <small class="compnay_error text-danger text-justify"></small>
+        </div>
+        <div class="col-md-7">
+        <span class="text-info pt-2">وضعیت پرداخت:</span><br/>
+      <div class="form-check mr-2">
+        <label class="form-check-label" for="squ-yes">
+            <input type="radio" class="form-check-input" id="squ-yes" name="balanced" value="true">تسویه شده
+        </label>
+    </div>
+    <div class="form-check">
+        <label class="form-check-label" for="squ-no">
+            <input type="radio" class="form-check-input" id="squ-no" name="balanced" value="false">در حال پرداخت(تسویه نشده)
+        </label>
+    </div>
+    </div><br/>
+
+        <div class="col-md-7 mb-3">
+            <span class="text-primary pt-2">وضعیت دوره کارآموزی:</span><br/>
+            <div class="form-check mr-2">
+                <label class="form-check-label" for="training-yes">
+                    <input type="radio" class="form-check-input" id="training-yes" name="training" value="true">شرکت می کند
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label" for="training-no">
+                    <input type="radio" class="form-check-input" id="training-no" name="training" value="false" checked>شرکت نمی کند
+                </label>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            //checking radios balanced button
+            <%if(result.balanced==true){%>
+            document.getElementById('squ-yes').checked=true;
+            <%}%>
+            <%if(result.balanced==false){%>
+            document.getElementById('squ-yes').checked=true;
+            <%}%>
+            //checking radios training button
+            <%if(result.training==true){%>
+            document.getElementById('training-yes').checked=true;
+            <%}%>
+            <%if(result.training==false){%>
+            document.getElementById('training-no').checked=true;
+            <%}%>
+        </script>
+
+    <div class="col-md-7">
+        <input type="submit" class="btn btn-primary badge-info" value="ویرایش مشتری"/>
+    </div><br/>
+
+        <div class="col-md-7">
+            <% if(errors.length > 0){ %>
+            <%errors.forEach(error=>{%>
+            <div class="bg-danger alert-dismissible alert-danger">
+                <span class="text-dark"><%=error%></span>
+            </div>
+            <%})%>
+            <%}%>
+        </div>
+    </div>
+</form>
+<script src="./../js/validate.js" type="text/javascript"></script>

@@ -1,0 +1,50 @@
+<%-include('header')%>
+
+<table class="table table-responsive col-md-7" dir="rtl">
+    <thead>
+    <tr class="table-secondary">
+        <th scope="col">شماره</th>
+        <th scope="col">نام و نام خانوادگی</th>
+        <th scope="col">شماره تلفن</th>
+        <th scope="col">کلاس</th>
+        <th scope="col">نام شرکت</th>
+        <th scope="col">وضعیت پرداخت</th>
+        <th scope="col">شرکت در کارآموزی</th>
+        <th scope="col">تاریخ ثبت نام</th>
+        <th scope="col">ویرایش</th>
+        <th scope="col">حذف</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%customer.map(customer=>{%>
+    <tr>
+        <th scope="row">1</th>
+        <td><%=customer.name%>&nbsp;&nbsp;<%=customer.lastName%></td>
+        <td><%=customer.phoneNumber%></td>
+        <td><%=customer.className%></td>
+        <td><%=customer.companyName%></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=customer.balanced ? 'بله' : 'خیر'%></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=customer.training ? 'بله' : 'خیر'%></td>
+        <td><%=date(customer.createdAt).format('jYYYY/jM/jD')%></td>
+        <td><a class="btn btn-info btn-sm" href="/editcustomer/<%=customer._id%>">ویرایش </a></td>
+        <td><a class="del_customer btn btn-danger btn-sm" href="/deletecustomer/<%=customer._id%>">حذف</a></td>
+    </tr>
+    <%})%>
+    <script type="text/javascript">
+        var customerdel=document.getElementsByClassName('del_customer');
+       for(i=0;i<customerdel.length;i++){
+        customerdel[i].onclick=function (e) {
+            var check=window.confirm('آیا از حذف مشتری مطمئنی؟!');
+            if(check==true){
+                return true;
+            }else{
+                e.preventDefault();
+                return false;
+            }
+        }
+        }
+    </script>
+    </tbody>
+</table>
+</body>
+</html>
