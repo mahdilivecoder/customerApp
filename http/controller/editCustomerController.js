@@ -12,18 +12,28 @@ class editCustomerController extends controller{
         }
         processEditForm(req,res){
             const query={_id:req.params.id}
-            Customer.update(query,{$set: { name: req.body.name,
-                    lastName: req.body.lastname,
+
+            var name=req.body.name;
+            const is_name=name.trim();
+            //lastname
+            var lastname=req.body.lastname;
+            const is_lastname=lastname.trim();
+            //companyname
+            var company=req.body.companyname;
+            var is_company=company.trim();
+            Customer.update(query,{$set: {
+                    name: is_name,
+                    lastName: is_lastname,
                     phoneNumber:req.body.phonenumber,
                     className:req.body.className,
-                    companyName:req.body.companyname,
+                    companyName:is_company,
                     balanced:req.body.balanced,
                     training:req.body.training,
                 }}).then(result=>{
                 if(result){
-                  res.json({message:'ویرایش با موفقیت انجام شد.'});
+                  return res.json({message:'ویرایش با موفقیت انجام شد.'});
                 }
-                res.json({message:'ویرایش انجام نشد.'});
+                return res.json({message:'ویرایش انجام نشد.'});
 
             })
         }

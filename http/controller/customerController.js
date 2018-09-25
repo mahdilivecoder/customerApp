@@ -9,19 +9,29 @@ class customerController extends controller{
         async addCustomerProcess(req,res) {
             let result = await this.getVlidateData(req, res);
             if (!result) {
+                //name
+                var name=req.body.name;
+                const is_name=name.trim();
+                //lastname
+                var lastname=req.body.lastname;
+                const is_lastname=lastname.trim();
+                //companyname
+                var company=req.body.companyname;
+                var is_company=company.trim();
+
                 const newCustomer = new Customer({
-                    name: req.body.name,
-                    lastName: req.body.lastname,
+                    name: is_name,
+                    lastName: is_lastname,
                     phoneNumber: req.body.phonenumber,
                     className: req.body.className,
-                    companyName: req.body.companyname,
+                    companyName: is_company ,
                     balanced: req.body.balanced,
                     training: req.body.training
 
                 })
                 //
 
-                let customer = await Customer.findOne({$and: [{name: req.body.name}, {lastName: req.body.lastname}]});
+                let customer = await Customer.findOne({$and: [{name: is_name}, {lastName: is_lastname}]});
                 if (customer) {
                   res.json({message:'چنین کاربری از قبل در این سیستم ثبت نام کرده است.'});
                 }
