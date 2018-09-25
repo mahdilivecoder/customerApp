@@ -12,9 +12,8 @@ class homeController extends controller {
     processSearch(req,res){
         var str=req.query.search;
         const query=str.trim();
-        Customer.findOne({$or:[{name:{ $regex: '.*' + query + '.*' }},
+        Customer.find({$or:[{name:{ $regex: '.*' + query + '.*' }},
                 {lastName:{ $regex: '.*' + query + '.*' }}]}).then(customer=>{
-                    console.log(customer);
                     if(customer){
                         res.render('search',{title:'جستجوی مشتری',customer:customer,errors:req.flash('errors'),date:this.date});
                     }else{
