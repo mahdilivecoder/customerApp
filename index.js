@@ -29,7 +29,7 @@ module.exports=class Application{
         mongoose.Promise=global.Promise;
         //mongodb://livecoder:2360702m@ds263172.mlab.com:63172/moshtari
         //mongodb://localhost/moshtari
-        mongoose.connect('mongodb://livecoder:2360702m@ds263172.mlab.com:63172/moshtari', { useNewUrlParser: true });
+        mongoose.connect('mongodb://localhost/moshtari', { useNewUrlParser: true });
     }
     setRoutes(){
         app.use(require('./routes'));

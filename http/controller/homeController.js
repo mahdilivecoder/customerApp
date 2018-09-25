@@ -14,8 +14,9 @@ class homeController extends controller {
         const query=str.trim();
         Customer.findOne({$or:[{name:{ $regex: '.*' + query + '.*' }},
                 {lastName:{ $regex: '.*' + query + '.*' }}]}).then(customer=>{
+                    console.log(customer);
                     if(customer){
-                        res.render('search',{customer:customer,errors:req.flash('errors'),date:this.date});
+                        res.render('search',{title:'جستجوی مشتری',customer:customer,errors:req.flash('errors'),date:this.date});
                     }else{
                        res.json('متاسفیم هیچ نتیجه ای پیدا نشد.');
                     }

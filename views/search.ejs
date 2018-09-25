@@ -16,10 +16,11 @@
     </tr>
     </thead>
     <tbody>
+
     <%if(customer.length>0){%>
     <%customer.map(customer=>{%>
     <tr>
-        <th scope="row">1</th>
+        <th scope="row" class="number"></th>
         <td><%=customer.name%>&nbsp;&nbsp;<%=customer.lastName%></td>
         <td><%=customer.phoneNumber%></td>
         <td><%=customer.className%></td>
@@ -47,16 +48,20 @@
     <%}%>
     <script type="text/javascript">
         var customerdel=document.getElementsByClassName('del_customer');
-       for(i=0;i<customerdel.length;i++){
-        customerdel[i].onclick=function (e) {
-            var check=window.confirm('آیا از حذف مشتری مطمئنی؟!');
-            if(check==true){
-                return true;
-            }else{
-                e.preventDefault();
-                return false;
+        for(i=0;i<customerdel.length;i++){
+            customerdel[i].onclick=function (e) {
+                var check=window.confirm('آیا از حذف مشتری مطمئنی؟!');
+                if(check==true){
+                    return true;
+                }else{
+                    e.preventDefault();
+                    return false;
+                }
             }
         }
+        var number=document.getElementsByClassName('number');
+        for(i=0;i<=number.length;i++){
+            number[i].append(i+1);
         }
     </script>
     </tbody>
