@@ -4,7 +4,7 @@ const moment=require('moment-jalali');
 class homeController extends controller {
     showData(req, res) {
         Customer.find({}).then(customer=>{
-            res.render('index',{customer:customer,errors:req.flash('errors'),date:this.date});
+            res.render('index',{title:"مشتریان",customer:customer,errors:req.flash('errors'),date:this.date});
         })
 
     }
@@ -17,7 +17,7 @@ class homeController extends controller {
                     if(customer){
                         res.render('search',{customer:customer,errors:req.flash('errors'),date:this.date});
                     }else{
-                        return this.back(req,res);
+                       res.json('متاسفیم هیچ نتیجه ای پیدا نشد.');
                     }
         })
 

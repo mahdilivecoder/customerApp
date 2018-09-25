@@ -11,10 +11,10 @@ router.get('/search?:search',home.processSearch);
 //add customer validator and routes file
 const addCustomer=require('./../http/controller/customerController');
 const addCustomerValidator=require('./../http/validator/addCustomerValidator');
+
 //addCustomer router controller
 router.get('/addcustomer',addCustomer.index);
 router.post('/addcustomer',addCustomerValidator.handle(),addCustomer.addCustomerProcess);
-
 
 
 //edit customer validator and routes file

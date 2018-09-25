@@ -65,7 +65,6 @@
     </div><br/>
 
         <div class="col-md-7">
-            <%console.log(errors)%>
             <% if(errors.length > 0){ %>
             <%errors.forEach(error=>{%>
             <div class="bg-danger alert-dismissible alert-danger">
@@ -73,10 +72,8 @@
             </div>
             <%})%>
             <%}%>
-            <div class="bg-success alert-success alert-dismissible">
-                <%=success%>
-            </div>
         </div>
     </div>
+
 </form>
 <script src="./../js/validate.js" type="text/javascript"></script>

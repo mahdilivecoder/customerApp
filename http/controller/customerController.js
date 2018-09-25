@@ -3,8 +3,9 @@ const {validationResult}=require('express-validator/check');
 const Customer=require('./../../models/customer');
 class customerController extends controller{
         index(req,res){
-            res.render('addcustomer',{title:'ثبت مشتری',errors:req.flash('errors'),success:req.flash('success')});
+            res.render('addcustomer',{title:'ثبت مشتری',errors:req.flash('errors')});
         }
+
         async addCustomerProcess(req,res) {
             let result = await this.getVlidateData(req, res);
             if (!result) {
@@ -22,14 +23,11 @@ class customerController extends controller{
 
                 let customer = await Customer.findOne({$and: [{name: req.body.name}, {lastName: req.body.lastname}]});
                 if (customer) {
-                    req.flash('errors', 'خطا،این کاربر قبلاٌ در سیستم ثبت شده است.');
-                    return res.redirect('/addcustomer');
+                  res.json({message:'چنین کاربری از قبل در این سیستم ثبت نام کرده است.'});
                 }
                 else {
                     await newCustomer.save();
-                    req.flash('success', 'ثبت نام با موفقیت انجام شد.!');
-                    console.log(req.flash('success'));
-                    return this.back(req, res);
+                    res.json({message:'ثبت نام با موفقیت انجام شد.'});
                 }
 
             }

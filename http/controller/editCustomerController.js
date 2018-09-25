@@ -21,9 +21,9 @@ class editCustomerController extends controller{
                     training:req.body.training,
                 }}).then(result=>{
                 if(result){
-                    return console.log('result is ok!');
+                  res.json({message:'ویرایش با موفقیت انجام شد.'});
                 }
-                return console.log('result is not ok!');
+                res.json({message:'ویرایش انجام نشد.'});
 
             })
         }
